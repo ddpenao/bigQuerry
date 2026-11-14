@@ -1,0 +1,11 @@
+# Docker solo necesita requirements.txt y src/; lo demás se monta como volumen
+vendor/
+plata/
+oro/
+logs/
+reportes/
+credenciales/
+datos_referencia/
+.git/
+.env
+*.tar.gz

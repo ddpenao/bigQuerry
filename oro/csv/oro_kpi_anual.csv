@@ -1,0 +1,4 @@
+anio,meses_con_datos,viajes,ingresos,viajes_anio_ant_mismos_meses,ingresos_anio_ant_mismos_meses,viajes_var_pct_anio_ant,viajes_meta,viajes_cumplimiento_pct,ingresos_var_pct_anio_ant,ingresos_meta,ingresos_cumplimiento_pct
+2024,12,39298690,1122370556.30,,,,,,,,
+2025,12,45189828,1260262463.60,39298690,1122370556.30,14.99,41263624.50,109.51,12.29,1178489084.11,106.94
+2026,8,27939213,845251749.61,29324556,803628198.28,-4.72,30790783.80,90.74,5.18,843809608.19,100.17

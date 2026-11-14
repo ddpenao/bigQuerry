@@ -1,0 +1,22 @@
+# Datos pesados: se regeneran con los scripts
+plata/
+oro/parquet/
+logs/
+vendor/
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Secretos
+.env
+credenciales/*
+!credenciales/.gitkeep
+
+# Imagen exportada para la presentación
+*.tar
+*.tar.gz
+
+# Python
+__pycache__/
+*.pyc
+.venv/

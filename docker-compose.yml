@@ -1,0 +1,22 @@
+services:
+  pipeline:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    image: tlc-pipeline:1.0
+    env_file: .env
+    # Spark usa memoria compartida para el shuffle
+    shm_size: "1gb"
+    volumes:
+      # Capa bronce montada en SOLO LECTURA: el contenedor no puede modificarla
+      - ${RUTA_BRONCE_HOST:-../TLC}:/datos/bronce:ro
+      - ./plata:/app/plata
+      - ./oro:/app/oro
+      - ./logs:/app/logs
+      - ./reportes:/app/reportes
+      - ./datos_referencia:/app/datos_referencia:ro
+      - ./credenciales:/app/credenciales:ro
+      # El código se monta para poder editarlo sin reconstruir la imagen
+      - ./src:/app/src:ro

@@ -1,0 +1,36 @@
+# Plantilla de configuración. scripts/00_preparar.sh la copia como .env.
+# .env NO se sube a git.
+
+# ---- Usuario del host (lo completa 00_preparar.sh) ----
+UID=1000
+GID=1000
+
+# ---- Ruta de la capa bronce en tu PC (relativa a esta carpeta o absoluta) ----
+RUTA_BRONCE_HOST=../TLC
+
+# ---- Spark local ----
+# Memoria para Spark. Con 8 GB de RAM usa 4g; con 16 GB puedes subir a 8g.
+SPARK_MEMORIA=4g
+SPARK_MASTER=local[*]
+SPARK_PARTICIONES_SHUFFLE=16
+
+# ---- Reglas de limpieza (plata) ----
+DURACION_MAX_MIN=360
+DISTANCIA_MAX_MILLAS=100
+VELOCIDAD_MAX_MPH=80
+MONTO_MAX_USD=1000
+PASAJEROS_MAX=9
+
+# ---- Oro: meta = mismo periodo del año anterior x META_FACTOR ----
+META_FACTOR=1.05
+
+# ---- BigQuery ----
+GCP_PROYECTO=
+BQ_DATASET=tlc_taxis
+BQ_UBICACION=US
+GOOGLE_APPLICATION_CREDENTIALS=/app/credenciales/gcp-key.json
+BQ_LIMITE_CONSULTA_GB=5
+BQ_LIMITE_ALMACENAMIENTO_GB=10
+# Meses de plata a subir. Vacío = el script se detiene y pregunta.
+# Ejemplos: ultimos:3   |   2026-06,2026-07,2026-08   |   todos
+BQ_PLATA_MESES=
