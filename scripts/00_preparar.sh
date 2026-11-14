@@ -23,7 +23,8 @@ log "4/6 Capa bronce (solo lectura)"
 BRONCE="$(leer_env RUTA_BRONCE_HOST)"; BRONCE="${BRONCE:-../TLC}"
 N=$(find "$BRONCE" -name 'yellow_tripdata_*.parquet' 2>/dev/null | wc -l)
 if [ "$N" -eq 0 ]; then
-  error "No encontré archivos yellow_tripdata_*.parquet en $BRONCE (revisa RUTA_BRONCE_HOST en .env)"
+  error "No encontré archivos yellow_tripdata_*.parquet en $BRONCE"
+  error "Descárgalos con: ./scripts/descargar_bronce.sh  (o revisa RUTA_BRONCE_HOST en .env)"
   exit 1
 fi
 log "   $N archivos Parquet en $BRONCE"
