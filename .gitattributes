@@ -1,0 +1,10 @@
+# Saltos de línea consistentes entre Linux y Windows.
+# Todo en LF (bash, Python, Docker y .env necesitan LF aunque se clone en Windows)...
+* text=auto eol=lf
+# ...salvo los scripts de Windows, que van en CRLF
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+# Binarios
+*.parquet binary
+*.tar binary
+*.gz binary

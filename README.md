@@ -27,6 +27,50 @@ TLC/  (capa bronce, solo lectura)       TLC_pipeline/  (este repositorio)
 
 No necesitas instalar Python, Java ni Spark en el equipo: la imagen Docker los trae.
 
+## Para compañeros: clonar y ejecutar en otro PC
+
+En Linux necesitas Docker, git y curl (en Windows, mira la sección siguiente). Los datos no están en el repositorio porque pesan 2 GB; el primer script los descarga de la página de TLC.
+
+```bash
+cd ~/Documentos
+git clone https://github.com/ddpenao/bigQuerry.git
+cd bigQuerry
+
+./scripts/descargar_bronce.sh   # baja los 32 Parquet a ../TLC (~2 GB, una sola vez)
+./scripts/00_preparar.sh        # .env, tabla de zonas, imagen Docker (~2 min)
+./scripts/ejecutar_todo.sh      # reconocimiento → plata → oro (10 a 35 min según el equipo)
+```
+
+Al terminar quedan las tablas en `oro/csv/` y el resumen de limpieza en `reportes/`. Si solo quieres ver resultados sin ejecutar nada, `oro/csv/` ya viene en el repositorio.
+
+Si `00_preparar.sh` falla con `docker-credential-desktop: executable file not found`, es un resto de Docker Desktop en `~/.docker/config.json`. Se corrige quitando la línea `"credsStore": "desktop"` de ese archivo.
+
+La carga a BigQuery (paso 3) es opcional y cada quien la hace con su propio proyecto de Google Cloud y su propia llave en `credenciales/gcp-key.json`.
+
+### En Windows
+
+Los scripts de Windows están en `scripts_windows/` (PowerShell, con un `.bat` por paso). Los de `scripts/` son para Linux. Se necesita **Docker Desktop** abierto (que diga *Engine running*) y **Git para Windows**. Desde una terminal (cmd o PowerShell):
+
+```bat
+cd %USERPROFILE%\Documents
+git clone https://github.com/ddpenao/bigQuerry.git
+cd bigQuerry
+
+rem Baja los 32 Parquet a ..\TLC (~2 GB, una sola vez)
+scripts_windows\descargar_bronce.bat
+rem Crea .env, descarga la tabla de zonas y construye la imagen Docker
+scripts_windows\00_preparar.bat
+rem Reconocimiento -> plata -> oro
+scripts_windows\ejecutar_todo.bat
+```
+
+Las demás opciones funcionan igual que en Linux:
+- `scripts_windows\02_plata.bat 2026-08` procesa un solo mes.
+- `scripts_windows\ejecutar_todo.bat -Demo` reprocesa solo el último mes.
+- `scripts_windows\04_bigquery.bat --solo-estimar` calcula tamaños sin subir nada.
+
+Los `.bat` ejecutan PowerShell con `-ExecutionPolicy Bypass`, así que no hay que cambiar la política de seguridad del equipo. En Windows la capa plata tarda más que en Linux porque Docker escribe en una carpeta de Windows; cuenten con 20 a 40 minutos.
+
 ## Orden de ejecución
 
 ```bash
