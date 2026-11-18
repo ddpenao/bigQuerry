@@ -29,6 +29,8 @@ No necesitas instalar Python, Java ni Spark en el equipo: la imagen Docker los t
 
 ## Para compañeros: clonar y ejecutar en otro PC
 
+La guía paso a paso, para Linux y Windows, está en [`docs/guia_companeros.md`](docs/guia_companeros.md).
+
 En Linux necesitas Docker, git y curl (en Windows, mira la sección siguiente). Los datos no están en el repositorio porque pesan 2 GB; el primer script los descarga de la página de TLC.
 
 ```bash
@@ -96,6 +98,22 @@ La capa plata procesa un mes a la vez y cada mes reemplaza solo sus propias part
 ```bash
 ./scripts/02_plata.sh --meses 2025-09,2025-10,2025-11
 ```
+
+## Borrar y reconstruir una capa
+
+Cualquier capa se puede borrar y volver a crear con un comando. `reconstruir` revisa qué falta y lo rehace en orden: si a plata le falta bronce, primero recupera bronce. Solo rehace lo que falta; si se borraron 10 días de agosto, procesa solo agosto.
+
+| Qué se borró | Linux | Windows |
+|---|---|---|
+| Ver qué tiene cada capa | `./scripts/estado.sh` | `scripts_windows\estado.bat` |
+| Bronce (`../TLC`) | `./scripts/reconstruir.sh bronce` | `scripts_windows\reconstruir.bat bronce` |
+| Plata (`plata/`) | `./scripts/reconstruir.sh plata` | `scripts_windows\reconstruir.bat plata` |
+| Oro (`oro/`) | `./scripts/reconstruir.sh oro` | `scripts_windows\reconstruir.bat oro` |
+| Varias o no se sabe | `./scripts/reconstruir.sh todo` | `scripts_windows\reconstruir.bat todo` |
+
+Bronce se recupera copiándola de un respaldo, si lo hay, o descargándola de la TLC (2 GB). Para no depender de internet en clase, guarda una copia de `TLC` en una USB y pon su ruta en `.env` como `RESPALDO_BRONCE=/media/usuario/USB/TLC` (en Windows, `RESPALDO_BRONCE=E:\TLC`). También se puede indicar en el comando con `--desde RUTA` en Linux o `-Desde RUTA` en Windows. Para reprocesar plata entera aunque esté completa: `--completo` en Linux o `-Completo` en Windows.
+
+Tiempos de referencia en Linux con 2 núcleos: bronce desde una USB, segundos; oro, menos de un minuto; un mes de plata, 20 a 90 segundos según el equipo.
 
 ## PASO 0: lo que se encontró en bronce
 

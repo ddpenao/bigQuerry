@@ -8,6 +8,13 @@ GID=1000
 # ---- Ruta de la capa bronce en tu PC (relativa a esta carpeta o absoluta) ----
 RUTA_BRONCE_HOST=../TLC
 
+# ---- Periodo de la capa bronce (lo usan descargar_bronce, estado y reconstruir) ----
+BRONCE_DESDE=2024-01
+BRONCE_HASTA=2026-08
+# Carpeta con una copia de bronce (USB u otro disco). Si existe, reconstruir copia de ahí
+# en vez de descargar. Ejemplo Linux: /media/daniel/USB/TLC   Windows: E:\TLC
+RESPALDO_BRONCE=
+
 # ---- Spark local ----
 # Memoria para Spark. Con 8 GB de RAM usa 4g; con 16 GB puedes subir a 8g.
 SPARK_MEMORIA=4g
@@ -32,5 +39,7 @@ GOOGLE_APPLICATION_CREDENTIALS=/app/credenciales/gcp-key.json
 BQ_LIMITE_CONSULTA_GB=5
 BQ_LIMITE_ALMACENAMIENTO_GB=10
 # Meses de plata a subir. Vacío = el script se detiene y pregunta.
-# Ejemplos: ultimos:3   |   2026-06,2026-07,2026-08   |   todos
+# Ejemplos: ultimos:3   |   2024-08:2026-08 (rango)   |   2026-06,2026-07,2026-08   |   todos
+# Modelo de almacenamiento: logico (sin comprimir, por defecto) o fisico (comprimido, cabe más gratis)
+BQ_MODELO_ALMACENAMIENTO=logico
 BQ_PLATA_MESES=

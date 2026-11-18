@@ -7,10 +7,16 @@ spark-warehouse/
 metastore_db/
 derby.log
 
-# Secretos
+# Secretos y configuración local (incluye copias como .env.respaldo)
 .env
+.env.*
 credenciales/*
 !credenciales/.gitkeep
+
+# Archivos temporales de editores (nano, vim)
+*.swp
+*.swo
+*~
 
 # Imagen exportada para la presentación
 *.tar

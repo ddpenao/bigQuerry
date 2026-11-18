@@ -45,6 +45,12 @@ def elegir_meses(disponibles: list[str], seleccion: str) -> list[str]:
         return disponibles
     if seleccion.startswith("ultimos:"):
         return disponibles[-int(seleccion.split(":")[1]):]
+    if ":" in seleccion:                       # rango, por ejemplo 2024-08:2026-08
+        desde, hasta = [x.strip() for x in seleccion.split(":", 1)]
+        rango = [m for m in disponibles if desde <= m <= hasta]
+        if not rango:
+            raise SystemExit(f"No hay meses de plata entre {desde} y {hasta}")
+        return rango
     pedidos = [m.strip() for m in seleccion.split(",") if m.strip()]
     faltan = [m for m in pedidos if m not in disponibles]
     if faltan:
@@ -79,6 +85,20 @@ def estimar_plata(meses: dict[str, list[Path]], seleccion: list[str], log) -> in
     estimado = int(total_filas * por_fila)
     log.info("Plata seleccionada: %d meses, %s filas, ~%.0f bytes/fila → ~%.2f GB lógicos en BigQuery",
              len(seleccion), f"{total_filas:,}", por_fila, estimado / GB)
+    return estimado
+
+
+# Tamaño comprimido en BigQuery frente al Parquet zstd de plata. BigQuery comprime algo menos
+# que zstd, y al recargar la tabla guarda la versión anterior unos días (viaje en el tiempo
+# + respaldo de seguridad), que en el modelo físico también cuenta. Por eso se multiplica x3.
+FACTOR_FISICO = 3.0
+
+
+def estimar_plata_fisico(meses: dict[str, list[Path]], seleccion: list[str], log) -> int:
+    en_disco = sum(f.stat().st_size for m in seleccion for d in meses[m] for f in d.glob("*.parquet"))
+    estimado = int(en_disco * FACTOR_FISICO)
+    log.info("Modelo físico: plata ocupa %.2f GB comprimida en disco → ~%.2f GB estimados en BigQuery "
+             "(incluye la copia temporal que BigQuery guarda al recargar)", en_disco / GB, estimado / GB)
     return estimado
 
 
@@ -202,7 +222,14 @@ def main() -> None:
             log.warning("O sube solo oro: scripts/04_bigquery.sh --solo-oro")
             raise SystemExit(SALIDA_SIN_DECISION)
         seleccion = elegir_meses(disponibles, seleccion_txt)
+        log.info("Meses de plata elegidos: %s → %s (%d)", seleccion[0], seleccion[-1], len(seleccion))
         estimado = estimar_plata(meses, seleccion, log)
+        if CONFIG.bq_modelo_almacenamiento == "fisico":
+            estimado = estimar_plata_fisico(meses, seleccion, log)
+        elif estimado > limite_alm:
+            fisico = estimar_plata_fisico(meses, seleccion, log)
+            if fisico <= limite_alm:
+                log.warning("En el modelo físico (comprimido) cabría gratis: agrega BQ_MODELO_ALMACENAMIENTO=fisico en .env")
         if estimado > limite_alm and os.environ.get("BQ_ACEPTO_COSTO_ALMACENAMIENTO", "") != "si":
             log.error("La selección ocuparía ~%.2f GB > %.0f GB gratis. Reduce BQ_PLATA_MESES "
                       "(o define BQ_ACEPTO_COSTO_ALMACENAMIENTO=si si aceptas el costo).",
@@ -218,8 +245,25 @@ def main() -> None:
     from google.cloud import bigquery
     ds = bigquery.Dataset(dataset)
     ds.location = CONFIG.bq_ubicacion
-    cliente.create_dataset(ds, exists_ok=True)
-    log.info("Dataset %s listo (%s)", dataset, CONFIG.bq_ubicacion)
+    fisico = CONFIG.bq_modelo_almacenamiento == "fisico"
+    if fisico:
+        ds.storage_billing_model = "PHYSICAL"
+        ds.max_time_travel_hours = 48   # mínimo permitido: menos copias viejas cobradas
+    ds = cliente.create_dataset(ds, exists_ok=True)
+    if fisico and ds.storage_billing_model != "PHYSICAL":
+        # El dataset ya existía en modelo lógico: se cambia (BigQuery tarda ~24 h en aplicarlo
+        # y solo deja cambiarlo cada 14 días)
+        try:
+            ds.storage_billing_model = "PHYSICAL"
+            ds.max_time_travel_hours = 48
+            ds = cliente.update_dataset(ds, ["storage_billing_model", "max_time_travel_hours"])
+            log.warning("El dataset pasó a modelo físico. BigQuery tarda hasta 24 h en empezar a cobrarlo así.")
+        except Exception as e:
+            log.error("No se pudo pasar el dataset a modelo físico: %s", e)
+            log.error("Si el proyecto está en modo sandbox, puede que no lo permita. No se subió nada.")
+            raise SystemExit(SALIDA_SIN_DECISION)
+    log.info("Dataset %s listo (%s, almacenamiento %s)", dataset, CONFIG.bq_ubicacion,
+             ds.storage_billing_model or "LOGICAL")
 
     tablas = []
     with paso(log, "Cargar oro (tablas materializadas)"):

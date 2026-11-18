@@ -240,9 +240,10 @@ def main() -> None:
             guardar(calidad, "oro_calidad_mensual", ["periodo", "etapa", "motivo"], log)
 
     ultimo = kpi_m.orderBy(F.desc("periodo")).first()
-    log.info("Último mes %s: %s viajes | var. vs mes anterior %s %% | vs año anterior %s %% | cumplimiento meta %s %%",
-             ultimo["periodo"], f"{ultimo['viajes']:,}", ultimo["viajes_var_pct_mes_ant"],
-             ultimo["viajes_var_pct_anio_ant"], ultimo["viajes_cumplimiento_pct"])
+    sd = lambda v: "sin dato" if v is None else f"{v} %"
+    log.info("Último mes %s: %s viajes | var. vs mes anterior %s | vs año anterior %s | cumplimiento meta %s",
+             ultimo["periodo"], f"{ultimo['viajes']:,}", sd(ultimo["viajes_var_pct_mes_ant"]),
+             sd(ultimo["viajes_var_pct_anio_ant"]), sd(ultimo["viajes_cumplimiento_pct"]))
     spark.stop()
 
 

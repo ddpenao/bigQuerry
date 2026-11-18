@@ -1,12 +1,12 @@
 ﻿# Descarga la capa bronce (Parquet de taxis amarillos de TLC), ~2 GB.
-#   scripts_windows\descargar_bronce.bat                    2024-01 a 2026-08
+#   scripts_windows\descargar_bronce.bat                    BRONCE_DESDE a BRONCE_HASTA (por defecto 2024-01 a 2026-08)
 #   scripts_windows\descargar_bronce.bat 2026-06 2026-08    solo un rango
 # Los archivos que ya existen no se vuelven a descargar.
-param([string]$Desde = "2024-01", [string]$Hasta = "2026-08")
+param([string]$Desde = "", [string]$Hasta = "")
 . "$PSScriptRoot\comun.ps1"
-
-$bronce = Leer-Env "RUTA_BRONCE_HOST"
-if (-not $bronce) { $bronce = "../TLC" }
+if (-not $Desde) { $Desde = Bronce-Desde }
+if (-not $Hasta) { $Hasta = Bronce-Hasta }
+$bronce = Ruta-Bronce
 $url = "https://d37ci6vzurychx.cloudfront.net/trip-data"
 $usarCurl = [bool](Get-Command curl.exe -ErrorAction SilentlyContinue)
 

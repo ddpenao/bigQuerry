@@ -53,6 +53,10 @@ class Config:
     # Meses de plata a subir: vacío = no decidir aún (el script se detiene y pregunta),
     # "todos" = todos, o una lista "2026-06,2026-07,2026-08", o "ultimos:3"
     bq_plata_meses: str = _env("BQ_PLATA_MESES", "")
+    # Cómo cobra BigQuery el almacenamiento del dataset:
+    #   "logico" = tamaño sin comprimir (modelo por defecto de BigQuery)
+    #   "fisico" = tamaño comprimido; plata ocupa ~10 veces menos y cabe más en los 10 GB gratis
+    bq_modelo_almacenamiento: str = _env("BQ_MODELO_ALMACENAMIENTO", "logico").lower()
 
     def asegurar_carpetas(self) -> None:
         for ruta in (self.ruta_plata, self.ruta_oro, self.ruta_logs, self.ruta_reportes):
