@@ -182,6 +182,14 @@ Código: `src/tlc/oro.py`. Son tablas pequeñas, cada una en `oro/parquet/<tabla
 | `oro_categoria_mensual` | mes × dimensión × categoría | participación y crecimiento por categoría |
 | `oro_categoria_anual` | año × dimensión × categoría | ranking de crecimiento por categoría |
 | `oro_calidad_mensual` | mes × motivo | % de filas descartadas, para mostrar la limpieza |
+| `oro_hora_mensual` | mes × día de la semana × hora | demanda por hora y velocidad promedio (congestión) |
+| `oro_viajes_diarios` | día | viajes por día, día de la semana y festivo |
+| `oro_viajes_semanales` | semana | promedio diario frente a las 8 semanas anteriores; Pico (+10 %) o Valle (−10 %) |
+| `oro_zona_mensual` | mes × zona de recogida | viajes, ingresos, % del mes y ranking |
+| `oro_pago_mensual` | mes × forma de pago | propina promedio, % sobre tarifa y variación vs. año anterior |
+| `oro_zona_mapa` / `oro_distrito_mapa` | mes × zona / borough | ubicación en texto para los mapas de Data Studio |
+
+Las siete últimas las calcula `src/tlc/oro_dashboard.py`; `03_oro` las genera después de las demás.
 
 Las dimensiones son `forma_pago`, `tipo_tarifa`, `proveedor` y `distrito_origen`. Esta última solo aparece si existe `datos_referencia/taxi_zone_lookup.csv`, que `00_preparar.sh` descarga de la TLC.
 
