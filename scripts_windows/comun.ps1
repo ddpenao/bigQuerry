@@ -37,8 +37,15 @@ function Ruta-Bronce  { $v = Leer-Env "RUTA_BRONCE_HOST"; if ($v) { $v } else { 
 function Bronce-Desde { $v = Leer-Env "BRONCE_DESDE"; if ($v) { $v } else { "2024-01" } }
 function Bronce-Hasta { $v = Leer-Env "BRONCE_HASTA"; if ($v) { $v } else { "2026-08" } }
 
-# Todos los meses AAAA-MM entre BRONCE_DESDE y BRONCE_HASTA
+# Meses de la práctica rápida (DEMO_MESES en .env, separados por coma)
+function Meses-Demo {
+    (Leer-Env "DEMO_MESES") -split "," | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^\d{4}-\d{2}$' }
+}
+
+# DEMO_MESES si está definido; si no, todos los meses AAAA-MM entre BRONCE_DESDE y BRONCE_HASTA
 function Meses-Esperados {
+    $demo = @(Meses-Demo)
+    if ($demo.Count -gt 0) { return $demo }
     $m = [datetime]::ParseExact("$(Bronce-Desde)-01", "yyyy-MM-dd", $null)
     $fin = [datetime]::ParseExact("$(Bronce-Hasta)-01", "yyyy-MM-dd", $null)
     while ($m -le $fin) { $m.ToString("yyyy-MM"); $m = $m.AddMonths(1) }
@@ -63,8 +70,12 @@ function Meses-IncompletosPlata {
     }
 }
 
+$TablasOro = @("oro_kpi_mensual", "oro_kpi_anual", "oro_categoria_mensual", "oro_categoria_anual", "oro_calidad_mensual",
+               "oro_hora_mensual", "oro_viajes_diarios", "oro_viajes_semanales", "oro_zona_mensual", "oro_pago_mensual",
+               "oro_zona_mapa", "oro_distrito_mapa")
+
 function Tablas-OroFaltantes {
-    foreach ($t in "oro_kpi_mensual", "oro_kpi_anual", "oro_categoria_mensual", "oro_categoria_anual") {
+    foreach ($t in $TablasOro) {
         if (-not (Test-Path "oro\parquet\$t\part-*.parquet")) { $t }
     }
 }

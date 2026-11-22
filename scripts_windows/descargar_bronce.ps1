@@ -4,6 +4,11 @@
 # Los archivos que ya existen no se vuelven a descargar.
 param([string]$Desde = "", [string]$Hasta = "")
 . "$PSScriptRoot\comun.ps1"
+# Sin argumentos y con DEMO_MESES en .env, descarga solo esos meses
+if ((-not $Desde) -and (-not $Hasta) -and (@(Meses-Demo).Count -gt 0)) {
+    foreach ($m in @(Meses-Demo)) { & $PSCommandPath $m $m }
+    exit 0
+}
 if (-not $Desde) { $Desde = Bronce-Desde }
 if (-not $Hasta) { $Hasta = Bronce-Hasta }
 $bronce = Ruta-Bronce

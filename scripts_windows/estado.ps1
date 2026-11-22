@@ -23,10 +23,10 @@ $faltanP = @(Meses-IncompletosPlata)
 $faltanO = @(Tablas-OroFaltantes)
 $dias = @(Get-ChildItem -Path "plata\viajes" -Directory -Filter "fecha=*" -ErrorAction SilentlyContinue).Count
 
-Log "Estado de las capas (periodo $(Bronce-Desde) -> $(Bronce-Hasta), $total meses)"
+Log "Estado de las capas (meses: $((@(Meses-Esperados)) -join ','))"
 Linea "Bronce" "$($total - $faltanB.Count) de $total archivos en $(Ruta-Bronce) ($(Tamano (Ruta-Bronce)))" $faltanB
 Linea "Plata"  "$($total - $faltanP.Count) de $total meses completos, $dias días ($(Tamano 'plata\viajes'))" $faltanP
-Linea "Oro"    "$(4 - $faltanO.Count) de 4 tablas principales en oro\parquet" $faltanO
+Linea "Oro"    "$($TablasOro.Count - $faltanO.Count) de $($TablasOro.Count) tablas en oro\parquet" $faltanO
 if (($faltanB.Count + $faltanP.Count + $faltanO.Count) -gt 0) {
     Log "Para rehacer lo que falta: scripts_windows\reconstruir.bat todo"
 }
