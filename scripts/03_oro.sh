@@ -11,7 +11,5 @@ faltan="$(meses_incompletos_plata | tr '\n' ' ')"
 [ -z "$faltan" ] || log "Aviso: plata tiene meses incompletos y oro saldrá sin ellos: $faltan (usa ./scripts/reconstruir.sh oro)"
 log "PASO 2 - Capa oro"
 en_contenedor tlc.oro
-log "PASO 2b - Tablas oro del dashboard (horas, días, semanas, zonas, pagos, mapas)"
-en_contenedor tlc.oro_dashboard
 log "Oro en oro/parquet y oro/csv"
 ls -1 oro/csv 2>/dev/null | sed 's/^/   /'
