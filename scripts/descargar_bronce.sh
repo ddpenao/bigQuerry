@@ -7,6 +7,11 @@
 source "$(dirname "$0")/comun.sh"
 command -v curl >/dev/null || { error "Falta curl (sudo apt install curl)"; exit 1; }
 
+# Sin argumentos y con DEMO_MESES en .env, descarga solo esos meses
+if [ $# -eq 0 ] && [ -n "$(meses_demo)" ]; then
+  for m in $(meses_demo); do "$0" "$m" "$m"; done
+  exit 0
+fi
 DESDE="${1:-$(bronce_desde)}"
 HASTA="${2:-$(bronce_hasta)}"
 BRONCE="$(ruta_bronce)"

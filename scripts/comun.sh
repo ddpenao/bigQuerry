@@ -24,7 +24,10 @@ ruta_bronce() { local b; b="$(leer_env RUTA_BRONCE_HOST)"; echo "${b:-../TLC}"; 
 bronce_desde() { local v; v="$(leer_env BRONCE_DESDE)"; echo "${v:-2024-01}"; }
 bronce_hasta() { local v; v="$(leer_env BRONCE_HASTA)"; echo "${v:-2026-08}"; }
 
-meses_esperados() {  # todos los meses AAAA-MM entre BRONCE_DESDE y BRONCE_HASTA
+meses_demo() { leer_env DEMO_MESES | tr ',' '\n' | sed 's/ //g' | grep -E '^[0-9]{4}-[0-9]{2}$' || true; }
+
+meses_esperados() {  # DEMO_MESES si está definido; si no, todos los meses entre BRONCE_DESDE y BRONCE_HASTA
+  if [ -n "$(meses_demo)" ]; then meses_demo; return; fi
   local m h; m="$(bronce_desde)"; h="$(bronce_hasta)"
   while [[ "$m" < "$h" || "$m" == "$h" ]]; do
     echo "$m"; m="$(date -d "$m-01 +1 month" +%Y-%m)"
@@ -47,9 +50,12 @@ meses_incompletos_plata() {  # meses de plata que no tienen todos sus días
   done
 }
 
+TABLAS_ORO="oro_kpi_mensual oro_kpi_anual oro_categoria_mensual oro_categoria_anual oro_calidad_mensual
+oro_hora_mensual oro_viajes_diarios oro_viajes_semanales oro_zona_mensual oro_pago_mensual oro_zona_mapa oro_distrito_mapa"
+
 tablas_oro_faltantes() {
   local t
-  for t in oro_kpi_mensual oro_kpi_anual oro_categoria_mensual oro_categoria_anual; do
+  for t in $TABLAS_ORO; do
     ls oro/parquet/$t/part-*.parquet >/dev/null 2>&1 || echo "$t"
   done
 }

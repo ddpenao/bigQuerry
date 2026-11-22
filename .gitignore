@@ -26,3 +26,6 @@ credenciales/*
 __pycache__/
 *.pyc
 .venv/
+
+# Copia de bronce de la práctica rápida (se regenera con demo/preparar_demo.sh)
+bronce_demo/

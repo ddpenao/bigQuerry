@@ -6,14 +6,16 @@ UID=1000
 GID=1000
 
 # ---- Ruta de la capa bronce en tu PC (relativa a esta carpeta o absoluta) ----
-RUTA_BRONCE_HOST=../TLC
+RUTA_BRONCE_HOST=./bronce_demo
 
 # ---- Periodo de la capa bronce (lo usan descargar_bronce, estado y reconstruir) ----
 BRONCE_DESDE=2024-01
-BRONCE_HASTA=2026-08
+BRONCE_HASTA=2026-02
+# PRÁCTICA RÁPIDA: solo estos meses (2 por año). Cambia la lista si quieres otros.
+DEMO_MESES=2024-01,2024-02,2025-01,2025-02,2026-01,2026-02
 # Carpeta con una copia de bronce (USB u otro disco). Si existe, reconstruir copia de ahí
 # en vez de descargar. Ejemplo Linux: /media/daniel/USB/TLC   Windows: E:\TLC
-RESPALDO_BRONCE=
+RESPALDO_BRONCE=../TLC
 
 # ---- Spark local ----
 # Memoria para Spark. Con 8 GB de RAM usa 4g; con 16 GB puedes subir a 8g.
@@ -33,7 +35,8 @@ META_FACTOR=1.05
 
 # ---- BigQuery ----
 GCP_PROYECTO=
-BQ_DATASET=tlc_taxis
+# Dataset aparte para no tocar el del proyecto completo (Metabase lee tlc_taxis)
+BQ_DATASET=tlc_taxis_demo
 BQ_UBICACION=US
 GOOGLE_APPLICATION_CREDENTIALS=/app/credenciales/gcp-key.json
 BQ_LIMITE_CONSULTA_GB=5

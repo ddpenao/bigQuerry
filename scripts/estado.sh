@@ -20,10 +20,10 @@ linea() {  # linea CAPA DETALLE FALTANTES
   fi
 }
 
-log "Estado de las capas (periodo $(bronce_desde) → $(bronce_hasta), $total_meses meses)"
+log "Estado de las capas (meses: $(meses_esperados | paste -sd, -))"
 linea "Bronce" "$n_b de $total_meses archivos en $(ruta_bronce) ($(tam "$(ruta_bronce)"))" "$faltan_b"
 linea "Plata"  "$n_p de $total_meses meses completos, $dias días ($(tam plata/viajes))" "$faltan_p"
-linea "Oro"    "$(( 4 - $(tablas_oro_faltantes | wc -l) )) de 4 tablas principales en oro/parquet" "$faltan_o"
+linea "Oro"    "$(( $(echo $TABLAS_ORO | wc -w) - $(tablas_oro_faltantes | wc -l) )) de $(echo $TABLAS_ORO | wc -w) tablas en oro/parquet" "$faltan_o"
 if [ -n "$faltan_b$faltan_p$faltan_o" ]; then
   log "Para rehacer lo que falta: ./scripts/reconstruir.sh todo"
 fi
