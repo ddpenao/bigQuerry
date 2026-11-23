@@ -27,6 +27,19 @@ TLC/  (capa bronce, solo lectura)       TLC_pipeline/  (este repositorio)
 
 No necesitas instalar Python, Java ni Spark en el equipo: la imagen Docker los trae.
 
+## Montar todo con un comando
+
+En una máquina Linux nueva, con Docker, git y python3 instalados y la llave de lectura de
+Metabase en `credenciales/metabase-lectura.json` (cuenta `plotly-lectura`):
+
+```bash
+./scripts/montar_todo.sh
+```
+
+Descarga bronce, construye la imagen, procesa plata y oro, levanta Metabase en
+http://localhost:3001, lo conecta a BigQuery y crea el tablero. Si se corta, se vuelve a correr
+y salta lo que ya está hecho. Detalle del tablero en `metabase/README.md`.
+
 ## Para compañeros: clonar y ejecutar en otro PC
 
 La guía paso a paso, para Linux y Windows, está en [`docs/guia_companeros.md`](docs/guia_companeros.md).

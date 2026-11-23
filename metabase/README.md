@@ -3,18 +3,20 @@
 El tablero "Dashboard TLC Taxis" tiene 5 pestañas (Resumen, Horas y días, Semanas y festivos,
 Zonas, Formas de pago) y consulta solo las tablas `oro_*` del dataset `tlc_taxis` en BigQuery.
 
-## Levantar Metabase
+## Levantar Metabase con el tablero (automático)
 
-```bash
-mkdir -p ~/metabase-data
-docker run -d -p 3001:3000 -v ~/metabase-data:/metabase-data \
-  -e MB_DB_FILE=/metabase-data/metabase.db --name metabase metabase/metabase:v0.65.6.3
-```
+`./scripts/montar_todo.sh` levanta Metabase con `docker compose up -d metabase` (servicio
+`metabase` del `docker-compose.yml`, arranca solo con la máquina) y después corre
+`configurar.py`, que:
 
-Abrir http://localhost:3001 y agregar la base BigQuery con el nombre **TLC Taxis**:
-proyecto `festive-quanta-475416-k1`, dataset `tlc_taxis`, llave JSON de la cuenta de servicio
-`plotly-lectura` (roles: Visualizador de datos y Usuario de trabajo de BigQuery).
-La llave no va en el repositorio.
+1. crea tu usuario si Metabase es nuevo (pide correo y contraseña),
+2. conecta la base BigQuery **TLC Taxis** (proyecto `festive-quanta-475416-k1`, dataset `tlc_taxis`)
+   con la llave `credenciales/metabase-lectura.json` de la cuenta `plotly-lectura`
+   (roles: Visualizador de datos y Usuario de trabajo de BigQuery),
+3. oculta `plata_viajes` y `plata_descartes`,
+4. crea el tablero desde `dashboard_tlc.json` si no existe.
+
+Se puede volver a correr solo: `python3 metabase/configurar.py`. La llave no va en el repositorio.
 
 ## Exportar e importar el tablero
 

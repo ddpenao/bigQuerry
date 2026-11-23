@@ -15,21 +15,36 @@ from pathlib import Path
 from metabase_api import Metabase
 
 
+JSON_POR_DEFECTO = Path(__file__).with_name("dashboard_tlc.json")
+
+
+def leer_tablero(ruta=JSON_POR_DEFECTO):
+    return json.loads(Path(ruta).read_text(encoding="utf-8"))
+
+
+def buscar_base(mb, nombre):
+    bases = mb.get("/api/database")
+    bases = bases.get("data", bases) if isinstance(bases, dict) else bases
+    return next((b for b in bases if b["name"] == nombre), None)
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--url", default="http://localhost:3001")
     p.add_argument("--email", required=True)
-    p.add_argument("--entrada", default=str(Path(__file__).with_name("dashboard_tlc.json")))
+    p.add_argument("--entrada", default=str(JSON_POR_DEFECTO))
     p.add_argument("--base", help="Nombre de la base en Metabase (por defecto el del JSON)")
     a = p.parse_args()
 
-    datos = json.loads(Path(a.entrada).read_text(encoding="utf-8"))
+    datos = leer_tablero(a.entrada)
     mb = Metabase(a.url, a.email)
+    importar_tablero(mb, datos, a.base)
 
-    nombre_base = a.base or datos["base_de_datos"]
-    bases = mb.get("/api/database")
-    bases = bases.get("data", bases) if isinstance(bases, dict) else bases
-    base = next((b for b in bases if b["name"] == nombre_base), None)
+
+def importar_tablero(mb, datos, nombre_base=None):
+    """Crea la colección, las preguntas y el tablero. Devuelve el id del tablero."""
+    nombre_base = nombre_base or datos["base_de_datos"]
+    base = buscar_base(mb, nombre_base)
     if base is None:
         raise SystemExit(f"No existe la base '{nombre_base}' en Metabase. Conéctala primero.")
 
@@ -64,7 +79,8 @@ def main():
                                    for m in x["mapeos"]] if cid else [],
         })
     mb.put(f"/api/dashboard/{tablero['id']}", {"tabs": pestanas, "dashcards": tarjetas, "parameters": tab["parameters"]})
-    print(f"Listo: {a.url.rstrip('/')}/dashboard/{tablero['id']}")
+    print(f"Listo: {mb.url}/dashboard/{tablero['id']}")
+    return tablero["id"]
 
 
 if __name__ == "__main__":

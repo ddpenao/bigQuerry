@@ -32,7 +32,7 @@ PASAJEROS_MAX=9
 META_FACTOR=1.05
 
 # ---- BigQuery ----
-GCP_PROYECTO=
+GCP_PROYECTO=festive-quanta-475416-k1
 BQ_DATASET=tlc_taxis
 BQ_UBICACION=US
 GOOGLE_APPLICATION_CREDENTIALS=/app/credenciales/gcp-key.json
@@ -43,3 +43,12 @@ BQ_LIMITE_ALMACENAMIENTO_GB=10
 # Modelo de almacenamiento: logico (sin comprimir, por defecto) o fisico (comprimido, cabe más gratis)
 BQ_MODELO_ALMACENAMIENTO=logico
 BQ_PLATA_MESES=
+
+# ---- Metabase (tablero) ----
+# Los usa scripts/montar_todo.sh. Vacío = valores por defecto.
+# Puerto en el navegador (http://localhost:3001), nombre del contenedor y carpeta de datos (~/metabase-data).
+MB_PUERTO=3001
+MB_CONTENEDOR=metabase
+MB_DATOS=
+# Llave JSON de la cuenta de servicio de solo lectura (plotly-lectura) que usa Metabase.
+MB_LLAVE_LECTURA=credenciales/metabase-lectura.json
