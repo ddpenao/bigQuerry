@@ -1,0 +1,896 @@
+{
+  "formato": "tlc-metabase-v1",
+  "base_de_datos": "TLC Taxis",
+  "dashboard": {
+    "name": "Dashboard TLC Taxis",
+    "description": "Taxis amarillos de NYC (TLC), 2024-01 a 2026-08. Fuente: tablas oro en BigQuery (tlc_taxis).",
+    "parameters": [
+      {
+        "id": "desde",
+        "name": "Desde",
+        "slug": "desde",
+        "type": "date/single",
+        "sectionId": "date"
+      },
+      {
+        "id": "hasta",
+        "name": "Hasta",
+        "slug": "hasta",
+        "type": "date/single",
+        "sectionId": "date"
+      }
+    ],
+    "tabs": [
+      {
+        "id": 4,
+        "name": "Resumen",
+        "position": 0
+      },
+      {
+        "id": 5,
+        "name": "Horas y días",
+        "position": 1
+      },
+      {
+        "id": 6,
+        "name": "Semanas y festivos",
+        "position": 2
+      },
+      {
+        "id": 7,
+        "name": "Zonas",
+        "position": 3
+      },
+      {
+        "id": 8,
+        "name": "Formas de pago",
+        "position": 4
+      }
+    ],
+    "dashcards": [
+      {
+        "card": 48,
+        "tab": 5,
+        "row": 0,
+        "col": 0,
+        "w": 12,
+        "h": 7,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 49,
+        "tab": 5,
+        "row": 0,
+        "col": 12,
+        "w": 12,
+        "h": 7,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 50,
+        "tab": 5,
+        "row": 7,
+        "col": 0,
+        "w": 12,
+        "h": 7,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 51,
+        "tab": 5,
+        "row": 7,
+        "col": 12,
+        "w": 12,
+        "h": 7,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 52,
+        "tab": 6,
+        "row": 0,
+        "col": 0,
+        "w": 24,
+        "h": 7,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 53,
+        "tab": 6,
+        "row": 7,
+        "col": 0,
+        "w": 8,
+        "h": 7,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 54,
+        "tab": 6,
+        "row": 7,
+        "col": 8,
+        "w": 16,
+        "h": 7,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 55,
+        "tab": 6,
+        "row": 14,
+        "col": 0,
+        "w": 24,
+        "h": 6,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 56,
+        "tab": 7,
+        "row": 0,
+        "col": 0,
+        "w": 12,
+        "h": 8,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 57,
+        "tab": 7,
+        "row": 0,
+        "col": 12,
+        "w": 12,
+        "h": 8,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 58,
+        "tab": 7,
+        "row": 8,
+        "col": 0,
+        "w": 24,
+        "h": 10,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 59,
+        "tab": 7,
+        "row": 18,
+        "col": 0,
+        "w": 24,
+        "h": 8,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 60,
+        "tab": 8,
+        "row": 0,
+        "col": 0,
+        "w": 12,
+        "h": 6,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 63,
+        "tab": 8,
+        "row": 0,
+        "col": 12,
+        "w": 12,
+        "h": 6,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 61,
+        "tab": 8,
+        "row": 6,
+        "col": 0,
+        "w": 24,
+        "h": 7,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 62,
+        "tab": 8,
+        "row": 13,
+        "col": 0,
+        "w": 24,
+        "h": 6,
+        "mapeos": [
+          "desde",
+          "hasta"
+        ],
+        "viz": {}
+      },
+      {
+        "card": 64,
+        "tab": 4,
+        "row": 0,
+        "col": 0,
+        "w": 6,
+        "h": 3,
+        "mapeos": [],
+        "viz": {}
+      },
+      {
+        "card": 65,
+        "tab": 4,
+        "row": 0,
+        "col": 6,
+        "w": 6,
+        "h": 3,
+        "mapeos": [],
+        "viz": {}
+      },
+      {
+        "card": 66,
+        "tab": 4,
+        "row": 0,
+        "col": 12,
+        "w": 6,
+        "h": 3,
+        "mapeos": [],
+        "viz": {}
+      },
+      {
+        "card": 67,
+        "tab": 4,
+        "row": 0,
+        "col": 18,
+        "w": 6,
+        "h": 3,
+        "mapeos": [],
+        "viz": {}
+      },
+      {
+        "card": 68,
+        "tab": 4,
+        "row": 3,
+        "col": 0,
+        "w": 24,
+        "h": 6,
+        "mapeos": [],
+        "viz": {}
+      },
+      {
+        "card": 69,
+        "tab": 4,
+        "row": 9,
+        "col": 0,
+        "w": 14,
+        "h": 7,
+        "mapeos": [],
+        "viz": {}
+      },
+      {
+        "card": 70,
+        "tab": 4,
+        "row": 9,
+        "col": 14,
+        "w": 10,
+        "h": 7,
+        "mapeos": [],
+        "viz": {}
+      },
+      {
+        "card": 71,
+        "tab": 4,
+        "row": 16,
+        "col": 0,
+        "w": 8,
+        "h": 6,
+        "mapeos": [],
+        "viz": {}
+      },
+      {
+        "card": 72,
+        "tab": 4,
+        "row": 16,
+        "col": 8,
+        "w": 8,
+        "h": 6,
+        "mapeos": [],
+        "viz": {}
+      },
+      {
+        "card": 73,
+        "tab": 4,
+        "row": 16,
+        "col": 16,
+        "w": 8,
+        "h": 6,
+        "mapeos": [],
+        "viz": {}
+      },
+      {
+        "card": 74,
+        "tab": 4,
+        "row": 22,
+        "col": 0,
+        "w": 24,
+        "h": 7,
+        "mapeos": [],
+        "viz": {}
+      }
+    ]
+  },
+  "cards": {
+    "48": {
+      "name": "Viajes por hora del día",
+      "description": null,
+      "display": "bar",
+      "sql": "SELECT hora, SUM(viajes) AS viajes FROM tlc_taxis.oro_hora_mensual WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] GROUP BY hora ORDER BY hora",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "hora"
+        ],
+        "graph.x_axis.scale": "ordinal",
+        "graph.metrics": [
+          "viajes"
+        ]
+      }
+    },
+    "49": {
+      "name": "Promedio de viajes por día de la semana",
+      "description": null,
+      "display": "bar",
+      "sql": "SELECT dia_semana, ROUND(AVG(viajes),0) AS viajes_promedio FROM tlc_taxis.oro_viajes_diarios WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] GROUP BY dia_semana, dia_semana_num ORDER BY dia_semana_num",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "dia_semana"
+        ],
+        "graph.show_values": true,
+        "graph.metrics": [
+          "viajes_promedio"
+        ]
+      }
+    },
+    "50": {
+      "name": "Promedio diario por hora: laborable vs. fin de semana",
+      "description": null,
+      "display": "line",
+      "sql": "SELECT hora, tipo_dia, ROUND(SUM(viajes)/SUM(dias),0) AS promedio_diario FROM tlc_taxis.oro_hora_mensual WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] GROUP BY hora, tipo_dia ORDER BY hora",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "hora",
+          "tipo_dia"
+        ],
+        "graph.x_axis.scale": "ordinal",
+        "graph.metrics": [
+          "promedio_diario"
+        ]
+      }
+    },
+    "51": {
+      "name": "Velocidad promedio por hora (mph)",
+      "description": null,
+      "display": "line",
+      "sql": "SELECT hora, tipo_dia, ROUND(SUM(distancia_millas_total)/SUM(duracion_min_total)*60,1) AS velocidad_mph FROM tlc_taxis.oro_hora_mensual WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] GROUP BY hora, tipo_dia ORDER BY hora",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "hora",
+          "tipo_dia"
+        ],
+        "graph.x_axis.scale": "ordinal",
+        "graph.metrics": [
+          "velocidad_mph"
+        ]
+      }
+    },
+    "52": {
+      "name": "Viajes por semana (semanas completas)",
+      "description": null,
+      "display": "line",
+      "sql": "SELECT semana_inicio, viajes FROM tlc_taxis.oro_viajes_semanales WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] AND semana_completa ORDER BY semana_inicio",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "semana_inicio"
+        ],
+        "graph.metrics": [
+          "viajes"
+        ]
+      }
+    },
+    "53": {
+      "name": "Semanas pico, normales y valle",
+      "description": null,
+      "display": "bar",
+      "sql": "SELECT clasificacion, COUNT(*) AS semanas FROM tlc_taxis.oro_viajes_semanales WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] AND semana_completa AND clasificacion IS NOT NULL GROUP BY clasificacion ORDER BY semanas DESC",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "clasificacion"
+        ],
+        "graph.show_values": true,
+        "graph.metrics": [
+          "semanas"
+        ]
+      }
+    },
+    "54": {
+      "name": "Semanas con festivo vs. promedio de las 8 anteriores",
+      "description": null,
+      "display": "table",
+      "sql": "SELECT semana_inicio, festivos, viajes, viajes_var_pct_vs_8_semanas, clasificacion FROM tlc_taxis.oro_viajes_semanales WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] AND es_semana_festivo AND semana_completa ORDER BY semana_inicio",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {}
+    },
+    "55": {
+      "name": "Viajes diarios",
+      "description": null,
+      "display": "line",
+      "sql": "SELECT fecha, viajes FROM tlc_taxis.oro_viajes_diarios WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] ORDER BY fecha",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "fecha"
+        ],
+        "graph.metrics": [
+          "viajes"
+        ]
+      }
+    },
+    "56": {
+      "name": "Top 10 zonas de origen",
+      "description": null,
+      "display": "row",
+      "sql": "SELECT CONCAT(zona, ' (', distrito, ')') AS zona, SUM(viajes) AS viajes, ROUND(100*SUM(viajes)/SUM(SUM(viajes)) OVER (),2) AS participacion_pct FROM tlc_taxis.oro_zona_mensual WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] GROUP BY zona, distrito ORDER BY viajes DESC LIMIT 10",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "zona"
+        ],
+        "graph.show_values": true,
+        "graph.metrics": [
+          "viajes"
+        ]
+      }
+    },
+    "57": {
+      "name": "Participación de viajes por distrito (%)",
+      "description": null,
+      "display": "row",
+      "sql": "SELECT distrito, ROUND(100*SUM(viajes)/SUM(SUM(viajes)) OVER (),2) AS participacion_pct FROM tlc_taxis.oro_distrito_mapa WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] GROUP BY distrito ORDER BY participacion_pct DESC",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "distrito"
+        ],
+        "graph.show_values": true,
+        "graph.metrics": [
+          "participacion_pct"
+        ]
+      }
+    },
+    "58": {
+      "name": "Mapa de viajes por zona de origen",
+      "description": null,
+      "display": "map",
+      "sql": "SELECT g.zona, g.distrito, g.centro_lat AS latitude, g.centro_lon AS longitude, SUM(oro_zona_mapa.viajes) AS viajes FROM tlc_taxis.oro_zona_mapa JOIN tlc_taxis.oro_zonas_geo g ON g.zona_id = oro_zona_mapa.zona_id WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] GROUP BY g.zona, g.distrito, g.centro_lat, g.centro_lon",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "map.type": "pin",
+        "map.pin_type": "markers",
+        "map.latitude_column": "latitude",
+        "map.longitude_column": "longitude",
+        "map.metric_column": "viajes"
+      }
+    },
+    "59": {
+      "name": "Zonas: detalle",
+      "description": null,
+      "display": "table",
+      "sql": "SELECT zona, distrito, SUM(viajes) AS viajes, ROUND(SUM(ingresos),0) AS ingresos, ROUND(100*SUM(viajes)/SUM(SUM(viajes)) OVER (),2) AS participacion_pct FROM tlc_taxis.oro_zona_mensual WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] GROUP BY zona, distrito ORDER BY viajes DESC LIMIT 50",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {}
+    },
+    "60": {
+      "name": "Participación de viajes por forma de pago (%)",
+      "description": null,
+      "display": "row",
+      "sql": "SELECT forma_pago, ROUND(100*SUM(viajes)/SUM(SUM(viajes)) OVER (),2) AS participacion_pct FROM tlc_taxis.oro_pago_mensual WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] GROUP BY forma_pago ORDER BY participacion_pct DESC",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "forma_pago"
+        ],
+        "graph.show_values": true,
+        "graph.metrics": [
+          "participacion_pct"
+        ]
+      }
+    },
+    "63": {
+      "name": "Viajes con propina por forma de pago (%)",
+      "description": null,
+      "display": "bar",
+      "sql": "SELECT forma_pago, ROUND(100*SUM(viajes_con_propina)/SUM(viajes),2) AS con_propina_pct FROM tlc_taxis.oro_pago_mensual WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] GROUP BY forma_pago ORDER BY con_propina_pct DESC",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "forma_pago"
+        ],
+        "graph.show_values": true,
+        "graph.metrics": [
+          "con_propina_pct"
+        ]
+      }
+    },
+    "61": {
+      "name": "Participación mensual por forma de pago (%)",
+      "description": null,
+      "display": "line",
+      "sql": "SELECT periodo, forma_pago, MAX(viajes_participacion_pct) AS participacion_pct FROM tlc_taxis.oro_pago_mensual WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] AND forma_pago IN ('Tarjeta de crédito','Efectivo','Desconocido') GROUP BY periodo, forma_pago ORDER BY periodo",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "periodo",
+          "forma_pago"
+        ],
+        "graph.metrics": [
+          "participacion_pct"
+        ]
+      }
+    },
+    "62": {
+      "name": "Propina promedio con tarjeta (USD)",
+      "description": null,
+      "display": "line",
+      "sql": "SELECT periodo, MAX(propina_promedio_usd) AS propina_promedio_usd FROM tlc_taxis.oro_pago_mensual WHERE TRUE [[AND periodo >= {{desde}}]] [[AND periodo <= {{hasta}}]] AND forma_pago = 'Tarjeta de crédito' GROUP BY periodo ORDER BY periodo",
+      "tags": [
+        "desde",
+        "hasta"
+      ],
+      "viz": {
+        "graph.dimensions": [
+          "periodo"
+        ],
+        "graph.metrics": [
+          "propina_promedio_usd"
+        ]
+      }
+    },
+    "64": {
+      "name": "Viajes 2025 vs. 2024",
+      "description": null,
+      "display": "scalar",
+      "sql": "SELECT viajes_var_pct_anio_ant AS var_viajes FROM tlc_taxis.oro_kpi_anual WHERE anio = 2025",
+      "tags": [],
+      "viz": {
+        "column_settings": {
+          "[\"name\",\"var_viajes\"]": {
+            "suffix": " %",
+            "decimals": 2
+          }
+        }
+      }
+    },
+    "65": {
+      "name": "Ingresos 2025 vs. 2024",
+      "description": null,
+      "display": "scalar",
+      "sql": "SELECT ingresos_var_pct_anio_ant AS var_ingresos FROM tlc_taxis.oro_kpi_anual WHERE anio = 2025",
+      "tags": [],
+      "viz": {
+        "column_settings": {
+          "[\"name\",\"var_ingresos\"]": {
+            "suffix": " %",
+            "decimals": 2
+          }
+        }
+      }
+    },
+    "66": {
+      "name": "Viajes 2026 vs. 2025 (ene-ago)",
+      "description": "2026 solo tiene datos de enero a agosto; se compara contra enero a agosto de 2025.",
+      "display": "scalar",
+      "sql": "SELECT viajes_var_pct_anio_ant AS var_viajes FROM tlc_taxis.oro_kpi_anual WHERE anio = 2026",
+      "tags": [],
+      "viz": {
+        "column_settings": {
+          "[\"name\",\"var_viajes\"]": {
+            "suffix": " %",
+            "decimals": 2
+          }
+        }
+      }
+    },
+    "67": {
+      "name": "Ingresos 2026 vs. 2025 (ene-ago)",
+      "description": "2026 solo tiene datos de enero a agosto; se compara contra enero a agosto de 2025.",
+      "display": "scalar",
+      "sql": "SELECT ingresos_var_pct_anio_ant AS var_ingresos FROM tlc_taxis.oro_kpi_anual WHERE anio = 2026",
+      "tags": [],
+      "viz": {
+        "column_settings": {
+          "[\"name\",\"var_ingresos\"]": {
+            "suffix": " %",
+            "decimals": 2
+          }
+        }
+      }
+    },
+    "68": {
+      "name": "Comparativo anual",
+      "description": "2026 solo tiene datos de enero a agosto; se compara contra enero a agosto de 2025. La meta de cada año es crecer 5 % sobre el anterior.",
+      "display": "table",
+      "sql": "SELECT CAST(anio AS STRING) AS anio, meses_con_datos, viajes, ROUND(ingresos,0) AS ingresos, ROUND(ingresos/viajes,2) AS ticket, viajes_var_pct_anio_ant, ingresos_var_pct_anio_ant, viajes_cumplimiento_pct, ingresos_cumplimiento_pct FROM tlc_taxis.oro_kpi_anual ORDER BY anio",
+      "tags": [],
+      "viz": {
+        "column_settings": {
+          "[\"name\",\"ingresos\"]": {
+            "number_style": "currency",
+            "currency": "USD",
+            "decimals": 0,
+            "column_title": "Ingresos"
+          },
+          "[\"name\",\"viajes_cumplimiento_pct\"]": {
+            "suffix": " %",
+            "decimals": 2,
+            "column_title": "Cumplimiento meta viajes"
+          },
+          "[\"name\",\"viajes_var_pct_anio_ant\"]": {
+            "suffix": " %",
+            "decimals": 2,
+            "column_title": "Var. viajes vs. año anterior (mismos meses)"
+          },
+          "[\"name\",\"ingresos_cumplimiento_pct\"]": {
+            "suffix": " %",
+            "decimals": 2,
+            "column_title": "Cumplimiento meta ingresos"
+          },
+          "[\"name\",\"ingresos_var_pct_anio_ant\"]": {
+            "suffix": " %",
+            "decimals": 2,
+            "column_title": "Var. ingresos vs. año anterior (mismos meses)"
+          },
+          "[\"name\",\"ticket\"]": {
+            "number_style": "currency",
+            "currency": "USD",
+            "decimals": 2,
+            "column_title": "Ticket promedio"
+          },
+          "[\"name\",\"anio\"]": {
+            "column_title": "Año"
+          },
+          "[\"name\",\"meses_con_datos\"]": {
+            "column_title": "Meses con datos"
+          },
+          "[\"name\",\"viajes\"]": {
+            "column_title": "Viajes"
+          }
+        }
+      }
+    },
+    "69": {
+      "name": "Viajes por mes, año contra año",
+      "description": null,
+      "display": "line",
+      "sql": "SELECT CONCAT(LPAD(CAST(mes AS STRING),2,'0'),' ',CASE mes WHEN 1 THEN 'Ene' WHEN 2 THEN 'Feb' WHEN 3 THEN 'Mar' WHEN 4 THEN 'Abr' WHEN 5 THEN 'May' WHEN 6 THEN 'Jun' WHEN 7 THEN 'Jul' WHEN 8 THEN 'Ago' WHEN 9 THEN 'Sep' WHEN 10 THEN 'Oct' WHEN 11 THEN 'Nov' ELSE 'Dic' END) AS mes, CAST(anio AS STRING) AS anio, SUM(viajes) AS viajes FROM tlc_taxis.oro_kpi_mensual GROUP BY mes, anio ORDER BY mes, anio",
+      "tags": [],
+      "viz": {
+        "graph.dimensions": [
+          "mes",
+          "anio"
+        ],
+        "graph.x_axis.title_text": "Mes",
+        "graph.y_axis.title_text": "Viajes",
+        "graph.metrics": [
+          "viajes"
+        ]
+      }
+    },
+    "70": {
+      "name": "Enero a agosto de cada año: viajes e ingresos",
+      "description": null,
+      "display": "combo",
+      "sql": "SELECT CONCAT('Ene-ago ', CAST(anio AS STRING)) AS anio, SUM(viajes) AS viajes, ROUND(SUM(ingresos),0) AS ingresos FROM tlc_taxis.oro_kpi_mensual WHERE mes <= 8 GROUP BY anio ORDER BY anio",
+      "tags": [],
+      "viz": {
+        "graph.dimensions": [
+          "anio"
+        ],
+        "graph.show_values": false,
+        "graph.x_axis.title_text": "",
+        "series_settings": {
+          "viajes": {
+            "display": "bar",
+            "title": "Viajes"
+          },
+          "ingresos": {
+            "display": "line",
+            "axis": "right",
+            "title": "Ingresos (USD)"
+          }
+        },
+        "graph.x_axis.scale": "ordinal",
+        "graph.metrics": [
+          "viajes",
+          "ingresos"
+        ]
+      }
+    },
+    "71": {
+      "name": "Top 5 meses con más viajes",
+      "description": null,
+      "display": "row",
+      "sql": "SELECT CONCAT(CASE mes WHEN 1 THEN 'Ene' WHEN 2 THEN 'Feb' WHEN 3 THEN 'Mar' WHEN 4 THEN 'Abr' WHEN 5 THEN 'May' WHEN 6 THEN 'Jun' WHEN 7 THEN 'Jul' WHEN 8 THEN 'Ago' WHEN 9 THEN 'Sep' WHEN 10 THEN 'Oct' WHEN 11 THEN 'Nov' ELSE 'Dic' END,' ',CAST(anio AS STRING)) AS mes, viajes FROM tlc_taxis.oro_kpi_mensual ORDER BY viajes DESC LIMIT 5",
+      "tags": [],
+      "viz": {
+        "graph.dimensions": [
+          "mes"
+        ],
+        "graph.show_values": true,
+        "graph.metrics": [
+          "viajes"
+        ]
+      }
+    },
+    "72": {
+      "name": "Top 5 en crecimiento anual (%)",
+      "description": null,
+      "display": "row",
+      "sql": "SELECT CONCAT(CASE mes WHEN 1 THEN 'Ene' WHEN 2 THEN 'Feb' WHEN 3 THEN 'Mar' WHEN 4 THEN 'Abr' WHEN 5 THEN 'May' WHEN 6 THEN 'Jun' WHEN 7 THEN 'Jul' WHEN 8 THEN 'Ago' WHEN 9 THEN 'Sep' WHEN 10 THEN 'Oct' WHEN 11 THEN 'Nov' ELSE 'Dic' END,' ',CAST(anio AS STRING)) AS mes, viajes_var_pct_anio_ant AS crecimiento_pct FROM tlc_taxis.oro_kpi_mensual WHERE viajes_var_pct_anio_ant IS NOT NULL ORDER BY viajes_var_pct_anio_ant DESC LIMIT 5",
+      "tags": [],
+      "viz": {
+        "graph.dimensions": [
+          "mes"
+        ],
+        "graph.show_values": true,
+        "series_settings": {
+          "crecimiento_pct": {
+            "color": "#88BF4D",
+            "title": "Crecimiento (%)"
+          }
+        },
+        "graph.metrics": [
+          "crecimiento_pct"
+        ]
+      }
+    },
+    "73": {
+      "name": "Top 5 en caída anual (%)",
+      "description": null,
+      "display": "row",
+      "sql": "SELECT CONCAT(CASE mes WHEN 1 THEN 'Ene' WHEN 2 THEN 'Feb' WHEN 3 THEN 'Mar' WHEN 4 THEN 'Abr' WHEN 5 THEN 'May' WHEN 6 THEN 'Jun' WHEN 7 THEN 'Jul' WHEN 8 THEN 'Ago' WHEN 9 THEN 'Sep' WHEN 10 THEN 'Oct' WHEN 11 THEN 'Nov' ELSE 'Dic' END,' ',CAST(anio AS STRING)) AS mes, viajes_var_pct_anio_ant AS caida_pct FROM tlc_taxis.oro_kpi_mensual WHERE viajes_var_pct_anio_ant IS NOT NULL ORDER BY viajes_var_pct_anio_ant ASC LIMIT 5",
+      "tags": [],
+      "viz": {
+        "graph.dimensions": [
+          "mes"
+        ],
+        "graph.show_values": true,
+        "series_settings": {
+          "caida_pct": {
+            "color": "#EF8C8C",
+            "title": "Variación (%)"
+          }
+        },
+        "graph.metrics": [
+          "caida_pct"
+        ]
+      }
+    },
+    "74": {
+      "name": "Ticket promedio ene-ago (USD)",
+      "description": null,
+      "display": "bar",
+      "sql": "SELECT CONCAT('Ene-ago ', CAST(anio AS STRING)) AS anio, ROUND(SUM(ingresos)/SUM(viajes),2) AS ticket FROM tlc_taxis.oro_kpi_mensual WHERE mes <= 8 GROUP BY anio ORDER BY anio",
+      "tags": [],
+      "viz": {
+        "graph.dimensions": [
+          "anio"
+        ],
+        "graph.show_values": true,
+        "graph.x_axis.title_text": "",
+        "graph.x_axis.scale": "ordinal",
+        "graph.metrics": [
+          "ticket"
+        ]
+      }
+    }
+  }
+}
